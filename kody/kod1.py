@@ -6,4 +6,4 @@ Created on Mon Apr 22 11:48:51 2024
 """
 
 #poczatek projektu
-a=40
+a=40.0
