@@ -21,3 +21,17 @@ class Transformacje:
         else:
             raise NotImplementedError(f"{model} model not implemented")
         self.e2 = (self.a**2-self.b**2)/self.a**2
+        
+# XYZ2flh
+    def hirvonen(self,X,Y,Z):
+        l=np.arctan2(Y,X)
+        p=np.sqrt(X**2+Y**2)
+        f=np.arctan(Z/(p*(1-self.e2)))
+        while True:
+            N=self.a/np.sqrt(1-self.e2*np.sin(f)**2)
+            h=p/np.cos(f)-N
+            fs=f
+            f=np.arctan(Z/(p*(1-(self.e2*(N/(N+h))))))
+            if np.abs(f-fs)<(0.000001/206265):
+                break
+            return(f,l,h) 
