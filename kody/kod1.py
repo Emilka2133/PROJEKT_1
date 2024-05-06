@@ -109,3 +109,19 @@ with open('wyniki_flh2xyz.txt','w') as p:
         X92=Xgk * M1992 - 5300000
         Y92=Ygk * M1992 + 500000
         return(X92,Y92)
+    
+#1992       
+XY1992=[]
+with open('wyniki_xyz2flh.txt','r') as p:
+    linie = p.readlines()
+    wsp = linie[1:]
+    for el in wsp:
+        q=el.split(',')
+        f=float(q[0])
+        l=float(q[1])
+        h=float(q[2])
+        l0=19*pi/180
+        f=f*pi/180
+        l=l*pi/180
+        X1992,Y1992=geo.flh21992(f,l,l0)
+        XY1992.append([X1992,Y1992])
