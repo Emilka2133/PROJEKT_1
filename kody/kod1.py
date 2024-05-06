@@ -125,3 +125,9 @@ with open('wyniki_xyz2flh.txt','r') as p:
         l=l*pi/180
         X1992,Y1992=geo.flh21992(f,l,l0)
         XY1992.append([X1992,Y1992])
+        
+with open('wyniki_flh21992.txt','w') as p:
+    p.write ('X1992 [m], Y1992[m] \n')
+    for xy1992_list in XY1992:
+        line = ','.join([str(wsp)for wsp in xy1992_list])
+        t = p.writelines(line+'\n')
