@@ -87,3 +87,25 @@ with open('wyniki_flh2xyz.txt','w') as p:
     for xyz_list in XYZ:
         line = ','.join([str(wsp)for wsp in xyz_list])
         t = p.writelines(line+'\n')
+        
+
+# flh21992
+
+    def flh21992 (self,f,l,l0):
+        A0=1-self.e2/4-3*self.e2**2/64-5*self.e2**3/256
+        A2=(3/8)*(self.e2+self.e2**2/4+15*self.e2**3/128)
+        A4=(15/256)*(self.e2**2+3*self.e2**3/4)
+        A6=(35*self.e2**3)/3072
+        sigma=self.a*(A0*f-A2*np.sin(2*f)+A4*np.sin(4*f)-A6*np.sin(6*f))
+        b2=self.a**2*(1-self.e2)
+        e_2=(self.a**2-b2)/b2
+        dl=l-l0
+        t=np.tan(f)
+        eta2=e_2*(np.cos(f))**2
+        N=self.a/(np.sqrt(1-self.e2*np.sin(f)**2))
+        Xgk=sigma+(dl**2/2)*N*np.sin(f)*np.cos(f)*((1+(dl**2/12)*(np.cos(f))**2*(5-t**2+9*eta2+4*eta2**2)+(dl**4/360)*np.cos(f)**4*(61-58*t**2+t**4+270*eta2-330*eta2*t**2)))
+        Ygk=dl*N*np.cos(f)*(1+(dl**2/6)*(np.cos(f)**2)*(1-t**2+eta2)+((dl**4/120)*(np.cos(f)**4))*(5-18*t**2+t**4+14*eta2-58*eta2*t**2))
+        M1992=0.9993
+        X92=Xgk * M1992 - 5300000
+        Y92=Ygk * M1992 + 500000
+        return(X92,Y92)
