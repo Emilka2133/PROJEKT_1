@@ -34,9 +34,51 @@ class Transformacje:
             f=np.arctan(Z/(p*(1-(self.e2*(N/(N+h))))))
             if np.abs(f-fs)<(0.000001/206265):
                 break
-            return(f,l,h)
-        
-        
-if __name__=="__main_":
-    geo=Transformacje(model="wgs84")
+            return(f,l,h) 
 
+if __name__=="__main__":
+    geo=Transformacje(model="wgs84") 
+
+#hirv    
+flh=[]
+with open('wsp_inp.txt','r') as p:
+    linie = p.readlines()
+    wsp = linie[4:]
+    for el in wsp:
+        q=el.split(',')
+        X=float(q[0])
+        Y=float(q[1])
+        Z=float(q[2])
+        f,l,h=geo.hirvonen(X,Y,Z)
+        flh.append([f,l,h])
+
+
+
+
+    def nothir (self,f,l,h):
+        N=self.a/np.sqrt(1-self.e2*np.sin(f)**2)
+        X=(N+h)*np.cos(f)*np.cos(l)
+        Y=(N+h)*np.cos(f)*np.sin(l)
+        Z=(N*(1-self.e2)+h)*np.sin(f)
+        return(X,Y,Z)  
+    
+    
+#nothir  
+  
+XYZ=[]
+with open('wyniki_xyz2flh.txt','r') as p:
+    linie = p.readlines()
+    wsp = linie[1:]
+    for el in wsp:
+        q=el.split(',')
+        f=float(q[0])
+        l=float(q[1])
+        h=float(q[2])
+        X,Y,Z=geo.nothir(f,l,h)
+        XYZ.append([X,Y,Z])
+
+with open('wyniki_flh2xyz.txt','w') as p:
+    p.write ('X [m], Y [m], Z [m] \n')
+    for xyz_list in XYZ:
+        line = ','.join([str(wsp)for wsp in xyz_list])
+        t = p.writelines(line+'\n')
