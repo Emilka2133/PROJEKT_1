@@ -34,4 +34,9 @@ class Transformacje:
             f=np.arctan(Z/(p*(1-(self.e2*(N/(N+h))))))
             if np.abs(f-fs)<(0.000001/206265):
                 break
-            return(f,l,h) 
+            return(f,l,h)
+        
+        
+if __name__=="__main_":
+    geo=Transformacje(model="wgs84")
+
