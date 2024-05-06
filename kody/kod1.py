@@ -52,9 +52,14 @@ with open('wsp_inp.txt','r') as p:
         f,l,h=geo.hirvonen(X,Y,Z)
         flh.append([f,l,h])
 
+with open('wyniki_xyz2flh.txt','w') as p:
+    p.write ('f [deg], lam [deg], h [m] \n')
+    for flh_list in flh:
+        line = ','.join([str(wsp)for wsp in flh_list])
+        t = p.writelines(line+'\n')
 
 
-
+# flh2XYZ
     def nothir (self,f,l,h):
         N=self.a/np.sqrt(1-self.e2*np.sin(f)**2)
         X=(N+h)*np.cos(f)*np.cos(l)
