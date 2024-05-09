@@ -195,103 +195,129 @@ class Transformacje:
         n,e,u=R.T@xyz_t
         return(n,e,u)
 
-  
-if __name__=="__main__":
-    geo=Transformacje(model="wgs84") 
+if _name_ =="_main_":
+   input_file_path = sys.argv[-1]
+   model = sys.argv[-2]
+   geo =Transformacje(model)
+   if "--header_lines":
+     numer_nagłówka = sys.argv[3]
+   if "--xyz2flh" in sys.argv and '--flh2xyz' in sys.argv:
+     print('zostało podane więcej niż jedna flaga')
+   elif '--xyz2flh' in sys.argv:
+       with open(input_file_path,'r') as p:
+           linie = p.readlines()
+           wsp=linie[int(numer_nagłówka):]
+           flh=[]        
+           for el in wsp:
+               q=el.split(',')
+               X=float(q[0])
+               Y=float(q[1])
+               Z=float(q[2])
+               f,l,h=geo.xyz2flh(X,Y,Z)
+               f=f*180/pi
+               l=l*180/pi
+               flh.append([f,l,h])
+       with open('wyniki_xyz2flh.txt','w') as p:
+           p.write ('f [deg] | lam [deg] |h [m] \n')
+           for flh_list in flh:
+               f,l,h=flh_list
+               line=f'{f:7.3f},{l:8.3f},{h:10.3f}'
+               t = p.writelines(line+'\n')
+   elif '--flh2xyz' in sys.argv:
+       with open(input_file_path,'r') as p:
+           linie = p.readlines()
+           wsp = linie[1:]
+           XYZ=[]
+           for el in wsp:
+               q=el.split(',')
+               f=float(q[0])
+               l=float(q[1])
+               h=float(q[2])
+               f=f*pi/180
+               l=l*pi/180
+               X,Y,Z=geo.flh2xyz(f,l,h)
+               XYZ.append([X,Y,Z])
+       with open('wyniki_flh2xyz.txt','w') as p:
+           p.write ('    X [m]   |   Y [m]    |    Z [m]   \n')
+           for xyz_list in XYZ:
+               x,y,z = xyz_list
+               line = f'{x:6.3f}, {y:8.3f}, {z:8.3f}'
+               t = p.writelines(line+'\n')
+   elif '--xyz2neu' in sys.argv:  
+         ref_X= float(input("Podaj wartość współrzędnej referencyjnej X:"))
+         ref_Y= float(input("Podaj wartość współrzędnej referencyjnej Y:"))
+         ref_Z= float(input("Podaj wartość współrzędnej referencyjnej Z:"))
+         with open(input_file_path,'r') as p:
+             linie = p.readlines()
+             wsp = linie[4:]
+             neu=[]
+             for el in wsp:
+                 q=el.split(',')
+                 X=float(q[0])
+                 Y=float(q[1])
+                 Z=float(q[2])
+                 ref_X,ref_Y,ref_Z= (float(ref_X),float(ref_Y),float(ref_Z))
+                 [[n],[e],[u]]=geo.XYZ2neu(X,Y,Z,ref_X,ref_Y,ref_Z)
+                 neu.append([n,e,u])
+         with open('wyniki_xyz2neu.txt','w') as p:
+           p.write ('   n [m]     |   e [m]    |   u [m] \n')
+           for neu_list in neu:
+               n,e,u = neu_list
+               line = f'{n:13.3f},{e:12.3f},{u:12.3f}'
+               t = p.writelines(line+'\n')
+   elif'--flh22000' in sys.argv:
+       with open(input_file_path,'r') as p:
+           linie = p.readlines()
+           wsp = linie[1:]
+           XY2000=[]
+           for el in wsp:
+               q=el.split(',')
+               f=float(q[0])
+               l=float(q[1])
+               h=float(q[2])
+               if l >13.5 and l<16.5:
+                   l0=15*pi/180
+                   nr=5
+               if l >16.5 and l<19.5:
+                   l0=18*pi/180
+                   nr=6
+               if l >19.5 and l<22.5:
+                   l0=21*pi/180
+                   nr=7
+               if l >22.5 and l<25.5:
+                   l0=24*pi/180
+                   nr=8
+               f=f*pi/180
+               l=l*pi/180
+               X2000,Y2000=geo.flh22000(f,l,l0,nr)
+               XY2000.append([X2000,Y2000])
+       with open('wyniki_flh22000.txt','w') as p:
+           p.write ('  X2000 [m]  | Y2000 [m] \n')
+           for xy2000_list in XY2000:
+               x2000,y2000 = xy2000_list
+               line =  f'{x2000:12.3f},{y2000:12.3f}'
+               t = p.writelines(line+'\n')
+   elif '--flh21992' in sys.argv:
+       with open(input_file_path,'r') as p:
+           linie = p.readlines()
+           wsp = linie[1:]
+           XY1992=[]
+           for el in wsp:
+               q=el.split(',')
+               f=float(q[0])
+               l=float(q[1])
+               h=float(q[2])
+               l0=19*pi/180
+               f=f*pi/180
+               l=l*pi/180
+               X1992,Y1992=geo.flh21992(f,l,l0)
+               XY1992.append([X1992,Y1992])      
+       with open('wyniki_flh21992.txt','w') as p:
+           p.write ('  X1992 [m]  | Y1992 [m] \n')
+           for xy1992_list in XY1992:
+               x1992,y1992 = xy1992_list
+               line = f'{x1992:12.3f},{y1992:12.3f}'
+               t = p.writelines(line+'\n')
 
-#hirvonen   
-flh=[]
-with open('wsp_inp.txt','r') as p:
-    linie = p.readlines()
-    wsp = linie[4:]
-    for el in wsp:
-        q=el.split(',')
-        X=float(q[0])
-        Y=float(q[1])
-        Z=float(q[2])
-        f,l,h=geo.hirvonen(X,Y,Z)
-        flh.append([f,l,h])
 
-with open('wyniki_xyz2flh.txt','w') as p:
-    p.write ('f [deg], lam [deg], h [m] \n')
-    for flh_list in flh:
-        line = ','.join([str(wsp)for wsp in flh_list])
-        t = p.writelines(line+'\n')
-
-        
-#nothir  
-  
-XYZ=[]
-with open('wyniki_xyz2flh.txt','r') as p:
-    linie = p.readlines()
-    wsp = linie[1:]
-    for el in wsp:
-        q=el.split(',')
-        f=float(q[0])
-        l=float(q[1])
-        h=float(q[2])
-        X,Y,Z=geo.nothir(f,l,h)
-        XYZ.append([X,Y,Z])
-
-with open('wyniki_flh2xyz.txt','w') as p:
-    p.write ('X [m], Y [m], Z [m] \n')
-    for xyz_list in XYZ:
-        line = ','.join([str(wsp)for wsp in xyz_list])
-        t = p.writelines(line+'\n')
-        
-        
-#2000
-XY2000=[]
-with open('wyniki_xyz2flh.txt','r') as p:
-    linie = p.readlines()
-    wsp = linie[1:]
-    for el in wsp:
-        q=el.split(',')
-        f=float(q[0])
-        l=float(q[1])
-        h=float(q[2])
-        if l >13.5 and l<16.5:
-            l0=15*pi/180
-            nr=5
-        if l >16.5 and l<19.5:
-            l0=18*pi/180
-            nr=6
-        if l >19.5 and l<22.5:
-            l0=21*pi/180
-            nr=7
-        if l >22.5 and l<25.5:
-            l0=24*pi/180
-            nr=8
-        f=f*pi/180
-        l=l*pi/180
-        X2000,Y2000=geo.flh22000(f,l,l0,nr)
-        XY2000.append([X2000,Y2000])
-    
-with open('wyniki_flh22000.txt','w') as p:
-    p.write ('X2000 [m], Y2000[m] \n')
-    for xy2000_list in XY2000:
-        line = ','.join([str(wsp)for wsp in xy2000_list])
-        t = p.writelines(line+'\n')
-        
-        
-#1992       
-XY1992=[]
-with open('wyniki_xyz2flh.txt','r') as p:
-    linie = p.readlines()
-    wsp = linie[1:]
-    for el in wsp:
-        q=el.split(',')
-        f=float(q[0])
-        l=float(q[1])
-        h=float(q[2])
-        l0=19*pi/180
-        f=f*pi/180
-        l=l*pi/180
-        X1992,Y1992=geo.flh21992(f,l,l0)
-        XY1992.append([X1992,Y1992])
-        
-with open('wyniki_flh21992.txt','w') as p:
-    p.write ('X1992 [m], Y1992[m] \n')
-    for xy1992_list in XY1992:
-        line = ','.join([str(wsp)for wsp in xy1992_list])
-        t = p.writelines(line+'\n')
+ 
