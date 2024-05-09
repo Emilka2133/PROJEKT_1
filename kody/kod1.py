@@ -195,7 +195,7 @@ class Transformacje:
         n,e,u=R.T@xyz_t
         return(n,e,u)
 
-if _name_ =="_main_":
+if __name__ =="__main__":
    input_file_path = sys.argv[-1]
    model = sys.argv[-2]
    geo =Transformacje(model)
@@ -218,15 +218,15 @@ if _name_ =="_main_":
                l=l*180/pi
                flh.append([f,l,h])
        with open('wyniki_xyz2flh.txt','w') as p:
-           p.write ('f [deg] | lam [deg] |h [m] \n')
+           p.write ('f [deg] | lam [deg]|  h [m] \n')
            for flh_list in flh:
                f,l,h=flh_list
-               line=f'{f:7.3f},{l:8.3f},{h:10.3f}'
+               line=f'{f:7.3f},{l:8.3f},{h:11.3f}'
                t = p.writelines(line+'\n')
    elif '--flh2xyz' in sys.argv:
        with open(input_file_path,'r') as p:
            linie = p.readlines()
-           wsp = linie[1:]
+           wsp = linie[int(numer_nagłówka):]
            XYZ=[]
            for el in wsp:
                q=el.split(',')
@@ -249,7 +249,7 @@ if _name_ =="_main_":
          ref_Z= float(input("Podaj wartość współrzędnej referencyjnej Z:"))
          with open(input_file_path,'r') as p:
              linie = p.readlines()
-             wsp = linie[4:]
+             wsp = linie[int(numer_nagłówka):]
              neu=[]
              for el in wsp:
                  q=el.split(',')
@@ -260,15 +260,15 @@ if _name_ =="_main_":
                  [[n],[e],[u]]=geo.XYZ2neu(X,Y,Z,ref_X,ref_Y,ref_Z)
                  neu.append([n,e,u])
          with open('wyniki_xyz2neu.txt','w') as p:
-           p.write ('   n [m]     |   e [m]    |   u [m] \n')
+           p.write ('   n [m]      |   e [m]     |   u [m] \n')
            for neu_list in neu:
                n,e,u = neu_list
-               line = f'{n:13.3f},{e:12.3f},{u:12.3f}'
+               line = f'{n:13.3f},{e:13.3f},{u:13.3f}'
                t = p.writelines(line+'\n')
    elif'--flh22000' in sys.argv:
        with open(input_file_path,'r') as p:
            linie = p.readlines()
-           wsp = linie[1:]
+           wsp = linie[int(numer_nagłówka):]
            XY2000=[]
            for el in wsp:
                q=el.split(',')
@@ -300,7 +300,7 @@ if _name_ =="_main_":
    elif '--flh21992' in sys.argv:
        with open(input_file_path,'r') as p:
            linie = p.readlines()
-           wsp = linie[1:]
+           wsp = linie[int(numer_nagłówka):]
            XY1992=[]
            for el in wsp:
                q=el.split(',')
