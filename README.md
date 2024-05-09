@@ -5,7 +5,7 @@ Oferuje on następujące funkcje:
  ’’transformacja XYZ -> neu’’ służy do zamiany współrzędnych prostokątnych płaskich na współrzędne topocentryczne.
 ’’transformacja BLH -> XY2000’’ służy do zamiany współrzędnych geodezyjnych na współrzędne prostokątne płaskie w układzie 2000.
  ’’transformacja BLH -> XY1992’’ służy do zamiany współrzędnych geodezyjnych na współrzędne prostokątne płaskie w układzie 1992.
-Obsługiwanymi elipsami jest elipsoida GRS’80 i WGS’84
+Obsługiwanymi elipsami jest elipsoida GRS’80, WGS’84, Krasowskiego
  2. Aby program działał na danym komputerze użytkownik powinien mieć zainstalowanego Pythona 3.12 w wersji 64-bit oraz zainstalowaną bibliotekę numpy, math
 3. Program został napisany dla systemu operacyjnego Windows Microsoft 11.
 4. Utworzyłyśmy klasę o nazwie "Transformacje", której funcje obsługują dwie elipsoidy.
@@ -47,7 +47,17 @@ Obsługiwanymi elipsami jest elipsoida GRS’80 i WGS’84
     parametry wejściowe:  X,Y,Z podane jest w metrach z dokładnością do 3 miejsc po przecinku
     dane wyjściowe:   n,e,u (str) - w metrach
     W rezultacie powstaje plik wynikowy posiadający trzy kolumny (kolejno n,e,u)
+
 Przykłady wywołań i ich rezyltaty:
+Pierwsza pozycja w wierszu poleceń: python
+Druga pozycja w wierszu poleceń: nazwa pliku z kodem z rozszerzeniem .py (kod1.py)
+Trzecia pozycja w wierszu poleceń: flaga wywołująca daną funkcję zamieniającą współrzędne 
+Czwarta pozycja w wierszu poleceń: flaga --header_lines i po spacji podajemy ilość wierszy nagłówka, które chcemy pominąć w naszym pliku .txt z danymi,licząc od góry pliku. Numerem ragłówka może być tylko typ integer.  
+Piąta pozycja w wierszu poleceń: elipsoida odniesienia (wgs84 lub grs80 lub Krasowskiego)
+Szósta pozycja w wierszu poleceń: nazwa pliku, z którego pobieramy dane z pliku .txt
+python kod1.py --xyz2flh --header_lines 4 wgs84 wsp_inp.txt
+python kod1.py --flh2xyz --header_lines 1 wgs84 wyniki_xyz2flh.txt
+python kod1.py --xyz2neu --header_lines 4 wgs84 wsp_inp.txt (Program pyta się użytkownika kolejno o wartości współrzędnych referencyjnych (XYZ), program jest dostosowany do wartości float. Gdy użytkownik napisze wartość współrzędnej, aby przejść do wpisania kolejnej współrzędnej musi kliknąć enter. Znakiem oddzielającym od części dziesiętnych jest kropka). Numerem nagłówka może być tylko typ integer. Jest to liczba wierszy nagłówka, które chcemy pominąć, licząc od góry pliku .txt.)
 
     
     - jak go używać wraz z kilkoma przykładami wywołań obrazującymi jak z niego korzystać (w tym opis struktury danych wejściowych i wyjściowych) 
