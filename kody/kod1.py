@@ -5,26 +5,57 @@ Created on Mon Apr 22 11:48:51 2024
 @author: emili
 """
 
+import sys
 import numpy as np
 from math import *
 
 class Transformacje:
     def __init__(self,model:str="wgs84"):
+        """
+        Parametry elipsoid:
+            a - duża półoś elipsoidy
+            b - mała półoś elipsoidy
+            e2 - mimośród^2
+
+        """
         if model=="wgs84":
             self.a=6378137
             self.b=6356752.31424518
         elif model=="grs80":
             self.a=6378137
             self.b=6356752.31414036
-        elif model=="mars":
-            self.a=3396900
-            self.b=3376097.80585952
+        elif model=="Krasowskiego":
+            self.a=6378245
+            self.b=6356863.0188
         else:
-            raise NotImplementedError(f"{model} model not implemented")
+            raise NotImplementedError(f"{model} - ten model nie jest osbsługiwany przez ten kod")
         self.e2 = (self.a**2-self.b**2)/self.a**2
         
+
+
+
 # XYZ2flh
-    def hirvonen(self,X,Y,Z):
+    def xyz2flh(self,X,Y,Z):
+        """
+        Algorytm Hirvonena - transformacja współrzednych ortokartezjańskich (XYZ) na współrzędne geodezyjne (flh). 
+
+        Parameters
+        ----------
+        X : float
+        Y : float
+        Z : float
+        
+        X,Y,Z - współrzędne w układzie ortokartezjańskim [m]
+
+        Returns
+        -------
+        f - szerokość geodezyjna [stopnie dziesiętne]
+        l - długość geodezyjna [stopnie dziesiętne]
+        h - wysokość geodezyjna [m]
+        
+        output [str]
+
+        """
         l=np.arctan2(Y,X)
         p=np.sqrt(X**2+Y**2)
         f=np.arctan(Z/(p*(1-self.e2)))
@@ -35,20 +66,54 @@ class Transformacje:
             f=np.arctan(Z/(p*(1-(self.e2*(N/(N+h))))))
             if np.abs(f-fs)<(0.000001/206265):
                 break
-            return(f,l,h) 
+        return(f,l,h)    
+    
+#  flh2XYZ
+    def flh2xyz (self,f,l,h):
+        """
+        Transformacja odwrotna do schematu Hirvonena. Zamiana współrzędnych geodezyjnych [flh] na współrzędne ortokartezjańskie [XYZ].
 
-# flh2XYZ
-    def nothir (self,f,l,h):
+        Parameters
+        ----------
+        f,l,h - float
+        f - szerokość geodezyjna [stopnie dziesiętne]
+        l - długość geodezyjna [stopnie dziesiętne]
+        h - wysokość geodezyjna [m]
+
+        Returns
+        -------
+       X,Y,Z -str
+        
+        X,Y,Z - współrzędne w układzie ortokartezjańskim [m]
+
+        """
         N=self.a/np.sqrt(1-self.e2*np.sin(f)**2)
         X=(N+h)*np.cos(f)*np.cos(l)
         Y=(N+h)*np.cos(f)*np.sin(l)
         Z=(N*(1-self.e2)+h)*np.sin(f)
         return(X,Y,Z)  
-    
-    
+
+  
 # flh22000
 
     def flh22000 (self,f,l,l0,nr):
+        """
+        Funkcja zamienia współrzędne geodezyjne (flh) na współrzędne płaskie w układzie PL-2000
+
+        Parameters
+        ----------
+        f - szerokość geodezyjna [stopnie dziesiętne] -float
+        l - długość geodezyjna [stopnie dziesiętne] -float
+        l0 - południk zerowy (15/18/21/24 stopnie) -float
+        nr : numer strefy (5/6/7/8) -int
+
+        Returns
+        -------
+        X2000 - str [m]
+        Y2000 - str [m]
+        współrzędne X,Y w układzie PL-2000
+        
+        """
         A0=1-self.e2/4-3*self.e2**2/64-5*self.e2**3/256
         A2=(3/8)*(self.e2+self.e2**2/4+15*self.e2**3/128)
         A4=(15/256)*(self.e2**2+3*self.e2**3/4)
@@ -67,9 +132,25 @@ class Transformacje:
         Y2000=Ygk*M2000+nr*1000000+500000
         return(X2000,Y2000)
     
+#python inf_proj1.py --wgs84 --xyz2flh wsp_inp.txt    
 # flh21992
 
     def flh21992 (self,f,l,l0):
+        """
+        Funkcja zamienia współrzędne geodezyjne (flh) na współrzędne płaskie w układzie PL-1992
+
+        Parameters
+        ----------
+        f - szerokość geodezyjna [stopnie dziesiętne] -float
+        l - długość geodezyjna [stopnie dziesiętne] -float
+        l0 - południk zerowy (19 stopnie) -float
+
+        Returns
+        -------
+        X1992 - str [m]
+        Y1992 - str [m]
+        współrzędne X,Y w układzie PL-1992
+        """
         A0=1-self.e2/4-3*self.e2**2/64-5*self.e2**3/256
         A2=(3/8)*(self.e2+self.e2**2/4+15*self.e2**3/128)
         A4=(15/256)*(self.e2**2+3*self.e2**3/4)
@@ -88,9 +169,33 @@ class Transformacje:
         Y92=Ygk * M1992 + 500000
         return(X92,Y92)
     
+    def XYZ2neu(self,X,Y,Z,ref_X,ref_Y,ref_Z):
+        """
+        Jest to funkcja zamieniająca współrzędne ortokartezjańskie (XYZ) na współrzędne w układzie topocentrycznym (neu).
 
+        Parameters
+        ----------
+       X,Y,Z - (float) współrzędne ortokartezjańskie [m]
+        ref_X,ref_Y,ref_Z - (float) współrzędne referencyjne wpisane przez użytkownika [m]
 
+        Returns
+        -------
+        n,e,u -(str) współrzędne układu topocentrycznego [m]
 
+        """
+        f,l,_=self.flh2xyz(ref_X,ref_Y,ref_Z)
+        f = f*pi/180
+        l = l*pi/180
+        R=np.array([[-sin(f)*cos(l),-sin(l),cos(f)*cos(l)],
+                    [-sin(f)*sin(l),cos(l),cos(f)*sin(l)],
+                    [cos(f),0,sin(f)]])
+        xyz_t = np.array([[X-ref_X],
+                          [Y-ref_Y],
+                          [Z-ref_Z]])
+        n,e,u=R.T@xyz_t
+        return(n,e,u)
+
+  
 if __name__=="__main__":
     geo=Transformacje(model="wgs84") 
 
