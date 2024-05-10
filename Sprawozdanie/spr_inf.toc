@@ -1,0 +1,8 @@
+\babel@toc {polish}{}\relax 
+\contentsline {section}{\numberline {1}Cel ćwiczenia}{2}{}%
+\contentsline {section}{\numberline {2}Wykorzystane narzędzia i materiały}{2}{}%
+\contentsline {section}{\numberline {3}Przebieg ćwiczenia}{2}{}%
+\contentsline {section}{\numberline {4}Podsumowanie}{3}{}%
+\contentsline {subsubsection}{\numberline {4.0.1}Rezultat}{3}{}%
+\contentsline {subsubsection}{\numberline {4.0.2}Nabyte umiejętności}{3}{}%
+\contentsline {subsubsection}{\numberline {4.0.3}Spostrzeżenia i trudności }{3}{}%
