@@ -218,11 +218,11 @@ if __name__ =="__main__":
                l=l*180/pi
                flh.append([f,l,h])
        with open('wyniki_xyz2flh.txt','w') as p:
-           p.write ('f [deg] | lam [deg]|  h [m] \n')
+           p.write ('  f [deg]    |  lam [deg]   |  h [m] \n')
            for flh_list in flh:
                f,l,h=flh_list
-               line=f'{f:7.3f},{l:8.3f},{h:11.3f}'
-               t = p.writelines(line+'\n')
+               line=f'{f:7.10f}, {l:7.10f}, {h:7.10f}'
+               t = p.writelines(line+'\n')  
    elif '--flh2xyz' in sys.argv:
        with open(input_file_path,'r') as p:
            linie = p.readlines()
