@@ -12,14 +12,22 @@
 
 \usepackage{lipsum}
 %---METADANE
-\title{Sprawozdanie}
-\author{Magdalena Frąckiewicz i Emilia Felczak}
-\date{\today}
-
-\newpage
-%----START DOKUMENTU
 \begin{document}
-\maketitle 
+
+\begin{center}
+\Huge 
+Ćwiczenie 1\\
+\end{center}
+\begin{center}
+	Politechnika Warszawska\\
+	Wydział Geodezji i Kartografii\\
+	Zakład Geodezji i Astronomii Geodezyjnej\\
+	Przedmiot: Informatyka Geodezyjna sem.4\\
+\end{center}
+Imiona i Nazwiska: Magdalena Frąckiewicz i Emilia Felczak\\
+Grupa: 1\\
+Prowadzący: mgr inż. Andrzej Szeszko\\
+%----START DOKUMENTU
 \tableofcontents 
 \newpage
 \section {Cel ćwiczenia}
@@ -38,12 +46,12 @@ Narzędzia i materiały wykorzystane do replikacji ćwiczenia:\\
 -GitHub  \\                                                                             
 -Wiersz polecenia\\
 -System operacyjny  Microsoft Windows 11\\
-- Biblioteka numpy, math\\
+- Biblioteka numpy, math, sys\\
 - prezentacje z zajęć (w tym kody z poprzedniego semestru)\\
 
 
 \section {Przebieg ćwiczenia}
-Pierwszym krokiem było stworzenie nowego repozytorium w GitHubie, aby móc wykonywać commity. Dzięki temu wspólnie mogłyśmy pracować na jednym pliku z różnych komputerów. Następnie storzyłyśmy klasę o nazwie Transformacje, która umożliwiła korzystanie z kilku elipsoid i odpowiednio przypisanych do nich parametrów za pomocą "self.". Importowałyśmy potrzebne biblioteki takie jak: numpy, math, sys. Biblioteka numpy  potrzebna jest do obliczeń macierzowych aby uzyskać precyzyjniejsze wyniki i schludniejszy kod. Kolejnym krokiem było napisanie funkcji zamieniających współrzędne. Na podstawie pliku wyjściowego (wsp\_inp.txt) mogłyśmy sprawdzać poprawność wyników. Było to możliwe dzięki wprowadzeniu do kodu odczytu danych z pliku .txt oraz utworzenia nowego pliku z wynikami. Po zweryfikowaniu działania kodu zajęłyśmy się stylistyką pliku wyjściowego oraz za pomocą sys.argv dałyśmy możliwość korzystania z kodu w wierszu poleceń z zainstalowaną biblioteką numpy. Użytkownik może wybrać flagę opisującą daną funkcję, elipsoidę odniesienia, liczbę wierszy nagłówka w pliku wejściowym oraz plik wejściowy .txt. W rezultacie tworzy się plik wynikowy w tym samym folderze co kod (kod1.py). 
+Pierwszym krokiem było stworzenie nowego repozytorium w GitHubie, aby móc wykonywać commity. Dzięki temu wspólnie mogłyśmy pracować na jednym pliku z różnych komputerów. Następnie storzyłyśmy klasę o nazwie Transformacje, która umożliwiła korzystanie z kilku elipsoid i odpowiednio przypisanych do nich parametrów za pomocą "self.". Importowałyśmy potrzebne biblioteki takie jak: numpy, math, sys. Biblioteka numpy  potrzebna jest do obliczeń macierzowych aby uzyskać precyzyjniejsze wyniki i schludniejszy kod. Kolejnym krokiem było napisanie funkcji zamieniających współrzędne. Na podstawie pliku wyjściowego (wsp\_inp.txt) mogłyśmy sprawdzać poprawność wyników. Było to możliwe dzięki wprowadzeniu do kodu odczytu danych z pliku .txt oraz utworzeniu nowego pliku z wynikami. Po zweryfikowaniu działania kodu zajęłyśmy się stylistyką pliku wyjściowego oraz za pomocą sys.argv dałyśmy możliwość korzystania z kodu w wierszu poleceń z zainstalowaną biblioteką numpy. Użytkownik może wybrać flagę opisującą daną funkcję, elipsoidę odniesienia, liczbę wierszy nagłówka w pliku wejściowym oraz plik wejściowy .txt. W rezultacie tworzy się plik wynikowy (wyniki\_nazwafunkcji.txt)w tym samym folderze co kod (kod1.py). 
 
 \section {Podsumowanie}
 
@@ -61,11 +69,11 @@ Umiejętności nabyte w trakcie wykonywania ćwiczenia:\\
 
 \subsubsection{Spostrzeżenia i trudności}
 Trudności:\\
-Często napotkanym problemem było odpowiednie wciecie poszczególnych części kodu. Miałyśmy trudność z sys.argv, aby wszystko poprawnie działało w konsoli. Rozwiązaniem problemu było odpowiednie przyporządkowanie miejsca danej flagi w wierszu poleceń. Przez dłuższy czas wyskakiwał błąd związany z liczbą wierszy w nagłówku. Natomiast udało nam się mu zapobiec poprzez zmianę typu na integer. Wszytkie napotkane na drodze komplikacje ostatecznie udało nam się naprawić. \\
+Często napotkanym problemem było nieodpowiednie wcięcie poszczególnych części kodu. Miałyśmy trudność z sys.argv, aby wszystko poprawnie działało w konsoli. Rozwiązaniem problemu było odpowiednie przyporządkowanie miejsca danej flagi w wierszu poleceń. Przez dłuższy czas wyskakiwał błąd związany z liczbą wierszy w nagłówku. Natomiast udało nam się mu zapobiec poprzez zmianę typu na integer. Wszytkie napotkane na drodze komplikacje ostatecznie udało nam się naprawić. \\
 Spostrzeżenia:\\
 Projekt wymagał od nas dużo pracy oraz cierpliwości. Natomiast po skończeniu całego projektu czujemy, że ta praca dała nam nowe możliwości, nauczyła pracować zespołowo oraz poszerzyła nasze umiejętności w zakresie informatyki i geodezji. 
 
 \section {Bibliografia}
 Książka wykorzystana w procesie tworzenia projeku do poprawności wzorów:\\
-"Geodezja współczesna" - Kazimierz Czarnecki
+''Geodezja współczesna'' - Kazimierz Czarnecki
 \end{document}
