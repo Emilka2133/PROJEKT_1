@@ -5,4 +5,5 @@
 \contentsline {section}{\numberline {4}Podsumowanie}{3}{}%
 \contentsline {subsubsection}{\numberline {4.0.1}Rezultat}{3}{}%
 \contentsline {subsubsection}{\numberline {4.0.2}Nabyte umiejętności}{3}{}%
-\contentsline {subsubsection}{\numberline {4.0.3}Spostrzeżenia i trudności }{3}{}%
+\contentsline {subsubsection}{\numberline {4.0.3}Spostrzeżenia i trudności}{3}{}%
+\contentsline {section}{\numberline {5}Bibliografia}{3}{}%

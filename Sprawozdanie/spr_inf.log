@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.19)  10 MAY 2024 10:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.19)  10 MAY 2024 10:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -219,7 +219,7 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \l__lipsum_b_int=\count279
 
 (C:\Users\JA\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex))
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 19
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 20
 .
 
 (C:\Users\JA\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
@@ -227,20 +227,20 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (spr_inf.aux)
 \openout1 = `spr_inf.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 (C:\Users\JA\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count280
@@ -265,41 +265,41 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-0.
+1.
  (C:\Users\JA\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-0.
+1.
 
 (C:\Users\JA\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-20.
+21.
 
 (C:\Users\JA\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-20.
+21.
 
 (C:\Users\JA\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 20.
+(Font)              <12> on input line 21.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 20.
+(Font)              <8> on input line 21.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 20.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
+(Font)              <6> on input line 21.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 21.
 
 
 (C:\Users\JA\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
 
 
 (C:\Users\JA\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -316,31 +316,37 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 {C:/Users/JA/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/JA/AppD
 ata/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 24--30
+Underfull \hbox (badness 10000) in paragraph at lines 25--31
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--41
+Underfull \hbox (badness 10000) in paragraph at lines 33--42
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--58
+Overfull \hbox (27.7085pt too wide) in paragraph at lines 50--51
+\T1/lmr/m/n/10.95 Link do re-po-zy-to-rium Gi-tHub: https://github.com/Emilka21
+33/PROJEKT_1.git 
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 52--60
 
  []
 
-[2] [3] (spr_inf.aux)
+[3] (spr_inf.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4828 strings out of 474485
- 78652 string characters out of 5745150
- 1932542 words of memory out of 5000000
- 27045 multiletter control sequences out of 15000+600000
+ 4829 strings out of 474485
+ 78666 string characters out of 5745150
+ 1931542 words of memory out of 5000000
+ 27046 multiletter control sequences out of 15000+600000
  593407 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,6n,93p,1295b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -349,7 +355,7 @@ C:/Users/JA/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/
 Users/JA/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/User
 s/JA/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/JA
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb>
-Output written on spr_inf.pdf (3 pages, 147605 bytes).
+Output written on spr_inf.pdf (3 pages, 150720 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
