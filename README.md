@@ -63,6 +63,8 @@ Oferuje on następujące funkcje:
  		python kod1.py --xyz2flh --header_lines 4 wgs84 wsp_inp.txt
  		python kod1.py --flh2xyz --header_lines 1 wgs84 wyniki_xyz2flh.txt
  		python kod1.py --xyz2neu --header_lines 4 wgs84 wsp_inp.txt (Program pyta się użytkownika kolejno o wartości współrzędnych referencyjnych (XYZ), tylko gdy użytkownik wpisze flagę --xyz2neu. Program jest dostosowany do wartości float. Gdy użytkownik napisze wartość współrzędnej, aby przejść do wpisania kolejnej współrzędnej musi kliknąć enter. Znakiem oddzielającym od części dziesiętnych jest kropka.)
+     		python kod1.py --flh22000 --header_lines 1 wgs84 wyniki_xyz2flh.txt
+     		python kod1.py --flh21992 --header_lines 1 wgs84 wyniki_xyz2flh.txt
 		Uwaga: Numerem nagłówka może być tylko typ integer. Jest to liczba wierszy nagłówka, które chcemy pominąć, licząc od góry pliku .txt.
                        Jeśli użytkownik poda flagę --xyz2flh oraz --flh2xyz wyskoczy błąd: zostało podane więcej niż jedna flaga.
 7. Znane błędy i nietypowe zachowania programu, które nie zostały jeszcze naprawione:
