@@ -5,7 +5,7 @@ Oferuje on następujące funkcje:
 	-transformacja XYZ -> neu, służy do zamiany współrzędnych prostokątnych płaskich na współrzędne topocentryczne. (xyz2neu)
 	-transformacja BLH -> XY2000, służy do zamiany współrzędnych geodezyjnych na współrzędne prostokątne płaskie w układzie 2000. (flh22000)
 	-transformacja BLH -> XY1992, służy do zamiany współrzędnych geodezyjnych na współrzędne prostokątne płaskie w układzie 1992. (flh21992)
-	Obsługiwanymi elipsami jest elipsoida GRS’80, WGS’84, Krasowskiego.
+	Obsługiwanymi elipsami jest elipsoida GRS’80, WGS’84, Krasowskiego (jeśli użytkownik poda inną elipsoidę wyskoczy błąd: {nieobsługiwana elipsoida}- ten model nie jest obsługiwany przez ten kod.
 2. Aby program działał na danym komputerze użytkownik powinien mieć zainstalowanego Pythona 3.12 w wersji 64-bit oraz zainstalowaną bibliotekę: numpy.
 3. Program został napisany dla systemu operacyjnego Windows Microsoft 11.
 4. Utworzyłyśmy klasę o nazwie "Transformacje", której funcje obsługują trzy elipsoidy.
@@ -51,7 +51,7 @@ Oferuje on następujące funkcje:
     Parametry wejściowe: X,Y,Z podane jest w metrach z dokładnością do 3 miejsc po przecinku
     Parametry wyjściowe: n,e,u (str) - w metrach 
     W rezultacie powstaje plik wynikowy posiadający trzy kolumny (kolejno n,e,u), którego pierwszym wierszem jest nagłówek okreslający oznaczenie współrzędnych ( n [m] | e [m] | u [m] ).
-6.Przykłady wywołań i ich rezyltaty:
+6.Przykłady wywołań i ich rezultaty:
 	Wygląd polecenia wpisywanego w wierszu poleceń:
 	- Pierwsza pozycja w wierszu poleceń: python
 	- Druga pozycja w wierszu poleceń: nazwa pliku z kodem z rozszerzeniem .py (kod1.py)
@@ -64,6 +64,7 @@ Oferuje on następujące funkcje:
  		python kod1.py --flh2xyz --header_lines 1 wgs84 wyniki_xyz2flh.txt
  		python kod1.py --xyz2neu --header_lines 4 wgs84 wsp_inp.txt (Program pyta się użytkownika kolejno o wartości współrzędnych referencyjnych (XYZ), tylko gdy użytkownik wpisze flagę --xyz2neu. Program jest dostosowany do wartości float. Gdy użytkownik napisze wartość współrzędnej, aby przejść do wpisania kolejnej współrzędnej musi kliknąć enter. Znakiem oddzielającym od części dziesiętnych jest kropka.)
 		Uwaga: Numerem nagłówka może być tylko typ integer. Jest to liczba wierszy nagłówka, które chcemy pominąć, licząc od góry pliku .txt.
+                       Jeśli użytkownik poda flagę --xyz2flh oraz --flh2xyz wyskoczy błąd: zostało podane więcej niż jedna flaga.
 7. Znane błędy i nietypowe zachowania programu, które nie zostały jeszcze naprawione:
   Program działa i nie zostały wykryte błędy, które można jeszcze naprawić.
   

@@ -132,7 +132,7 @@ class Transformacje:
         Y2000=Ygk*M2000+nr*1000000+500000
         return(X2000,Y2000)
     
-#python inf_proj1.py --wgs84 --xyz2flh wsp_inp.txt    
+  
 # flh21992
 
     def flh21992 (self,f,l,l0):
